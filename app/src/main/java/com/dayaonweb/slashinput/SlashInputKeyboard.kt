@@ -46,6 +46,7 @@ class SlashInputKeyboard @JvmOverloads constructor(
     private var textColor: Int
     private var keyboardBackgroundColor: Int
     private var isDotKeyVisible: Boolean
+    private var isClearKeyVisible: Boolean
     private var textFont: Int
     private var clearDrawable: Int
     private var clearDrawableColor: Int
@@ -75,6 +76,7 @@ class SlashInputKeyboard @JvmOverloads constructor(
             )
             textFont = getResourceId(R.styleable.SlashInputKeyboard_textFont, -1)
             isDotKeyVisible = getBoolean(R.styleable.SlashInputKeyboard_isDotVisible, true)
+            isClearKeyVisible = getBoolean(R.styleable.SlashInputKeyboard_isClearVisible, true)
         }
         LayoutInflater.from(context).inflate(R.layout.keyboard, this, true)
         initializeKeyboard()
@@ -85,6 +87,7 @@ class SlashInputKeyboard @JvmOverloads constructor(
         setInputTextColor(textColor)
         setKeyboardBackgroundColor(keyboardBackgroundColor)
         setDotAvailable(isDotKeyVisible)
+        setClearAvailable(isClearKeyVisible)
         setTextFont(textFont)
         setClearDrawable(clearDrawable)
         setClearDrawableColor(clearDrawableColor)
@@ -129,6 +132,16 @@ class SlashInputKeyboard @JvmOverloads constructor(
         val keyDot = findViewById<MaterialButton>(keyDotId)
         keyDot.visibility = if (isAvailable) View.VISIBLE else View.INVISIBLE
         keyDot.isClickable = isAvailable
+        invalidateLayout()
+    }
+
+    fun setClearAvailable(isAvailable: Boolean) {
+        val keyClearId = keys.find { keyId ->
+            keyId == R.id.button_clear
+        } ?: return
+        val keyClear = findViewById<MaterialButton>(keyClearId)
+        keyClear.visibility = if (isAvailable) View.VISIBLE else View.INVISIBLE
+        keyClear.isClickable = isAvailable
         invalidateLayout()
     }
 
