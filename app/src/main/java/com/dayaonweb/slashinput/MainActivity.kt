@@ -27,14 +27,5 @@ class MainActivity : AppCompatActivity() {
         val inputConnection = inputEditText.onCreateInputConnection(EditorInfo())
         keyboard.setInputConnection(inputConnection)
 
-        // Setup button listeners to change color dynamically
-        findViewById<Button>(R.id.btnTextColor).setOnClickListener {
-            keyboard.setInputTextColor(getColor(R.color.design_default_color_primary))
-        }
-
-        findViewById<Button>(R.id.btnBgColor).setOnClickListener {
-            keyboard.setKeyboardBackgroundColor(getColor(R.color.black))
-        }
-
     }
 }

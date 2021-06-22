@@ -6,43 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/rubik_bold"
+        android:padding="16dp"
+        android:text="SlashPay keyboard"
+        android:textAlignment="center"
+        android:textColor="@color/slash_green"
+        android:textSize="32sp" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilParent"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/tvTitle"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="64dp"
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusTopEnd="16dp"
-        app:boxCornerRadiusTopStart="16dp">
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxStrokeColor="@color/slash_green">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:focusable="true" />
+            android:textColor="@color/slash_green"
+            android:textColorHighlight="@color/slash_green"
+            android:textCursorDrawable="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/btnTextColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tilParent"
-        android:layout_margin="32dp"
-        android:text="change text color" />
-
-    <Button
-        android:id="@+id/btnBgColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/btnTextColor"
-        android:layout_margin="32dp"
-        android:text="change background color" />
 
     <com.dayaonweb.slashinput.SlashInputKeyboard
         android:id="@+id/keyboard"
