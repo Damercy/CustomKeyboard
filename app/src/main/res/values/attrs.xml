@@ -4,6 +4,7 @@
         <attr name="textColor" format="color" />
         <attr name="backgroundColor" format="color" />
         <attr name="isDotVisible" format="boolean"/>
+        <attr name="isClearVisible" format="boolean"/>
         <attr name="textFont" format="reference" />
         <attr name="clearDrawable" format="reference"/>
         <attr name="clearDrawableColor" format="reference"/>

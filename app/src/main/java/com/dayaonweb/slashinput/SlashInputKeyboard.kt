@@ -23,22 +23,20 @@ class SlashInputKeyboard @JvmOverloads constructor(
 ) : LinearLayout(context, attributeSet, defStyle, defStyleRes), View.OnClickListener {
 
     // The input keys (buttons)
-    private lateinit var key0: MaterialButton
-    private lateinit var key1: MaterialButton
-    private lateinit var key2: MaterialButton
-    private lateinit var key3: MaterialButton
-    private lateinit var key4: MaterialButton
-    private lateinit var key5: MaterialButton
-    private lateinit var key6: MaterialButton
-    private lateinit var key7: MaterialButton
-    private lateinit var key8: MaterialButton
-    private lateinit var key9: MaterialButton
-    private lateinit var keyClear: MaterialButton
-    private lateinit var keyDot: MaterialButton
-
-    // HashMap containing mapping of keyID & keyText
-    // Required to get which key is pressed & display corresponding string
-    private var keyIdToString: HashMap<Int, String> = hashMapOf()
+    private var keys: List<Int> = listOf(
+        R.id.button_0,
+        R.id.button_1,
+        R.id.button_2,
+        R.id.button_3,
+        R.id.button_4,
+        R.id.button_5,
+        R.id.button_6,
+        R.id.button_7,
+        R.id.button_8,
+        R.id.button_9,
+        R.id.button_dot,
+        R.id.button_clear,
+    )
 
 
     // Communication link to the input edit text
@@ -83,57 +81,21 @@ class SlashInputKeyboard @JvmOverloads constructor(
     }
 
     private fun initializeKeyboard() {
-        hookKeys()
         setupKeysListener()
-        populateKeysIdToStringMap()
         setInputTextColor(textColor)
         setKeyboardBackgroundColor(keyboardBackgroundColor)
         setDotAvailable(isDotKeyVisible)
         setTextFont(textFont)
+        setClearDrawable(clearDrawable)
+        setClearDrawableColor(clearDrawableColor)
     }
 
-    private fun populateKeysIdToStringMap() {
-        keyIdToString[R.id.button_0] = "0"
-        keyIdToString[R.id.button_1] = "1"
-        keyIdToString[R.id.button_2] = "2"
-        keyIdToString[R.id.button_3] = "3"
-        keyIdToString[R.id.button_4] = "4"
-        keyIdToString[R.id.button_5] = "5"
-        keyIdToString[R.id.button_6] = "6"
-        keyIdToString[R.id.button_7] = "7"
-        keyIdToString[R.id.button_8] = "8"
-        keyIdToString[R.id.button_9] = "9"
-        keyIdToString[R.id.button_dot] = "."
-    }
 
     private fun setupKeysListener() {
-        key0.setOnClickListener(this)
-        key1.setOnClickListener(this)
-        key2.setOnClickListener(this)
-        key3.setOnClickListener(this)
-        key4.setOnClickListener(this)
-        key5.setOnClickListener(this)
-        key6.setOnClickListener(this)
-        key7.setOnClickListener(this)
-        key8.setOnClickListener(this)
-        key9.setOnClickListener(this)
-        keyClear.setOnClickListener(this)
-        keyDot.setOnClickListener(this)
-    }
-
-    private fun hookKeys() {
-        key0 = findViewById(R.id.button_0)
-        key1 = findViewById(R.id.button_1)
-        key2 = findViewById(R.id.button_2)
-        key3 = findViewById(R.id.button_3)
-        key4 = findViewById(R.id.button_4)
-        key5 = findViewById(R.id.button_5)
-        key6 = findViewById(R.id.button_6)
-        key7 = findViewById(R.id.button_7)
-        key8 = findViewById(R.id.button_8)
-        key9 = findViewById(R.id.button_9)
-        keyClear = findViewById(R.id.button_clear)
-        keyDot = findViewById(R.id.button_dot)
+        keys.forEach { keyId ->
+            val keyButton = findViewById<MaterialButton>(keyId)
+            keyButton.setOnClickListener(this)
+        }
     }
 
     private fun invalidateLayout() {
@@ -142,17 +104,12 @@ class SlashInputKeyboard @JvmOverloads constructor(
     }
 
     fun setInputTextColor(@ColorInt color: Int) {
-        key0.setTextColor(color)
-        key1.setTextColor(color)
-        key2.setTextColor(color)
-        key3.setTextColor(color)
-        key4.setTextColor(color)
-        key5.setTextColor(color)
-        key6.setTextColor(color)
-        key7.setTextColor(color)
-        key8.setTextColor(color)
-        key9.setTextColor(color)
-        keyDot.setTextColor(color)
+        for (keyId in keys) {
+            if (keyId != R.id.button_clear) {
+                val keyButton = findViewById<MaterialButton>(keyId)
+                keyButton.setTextColor(color)
+            }
+        }
         invalidateLayout()
     }
 
@@ -160,12 +117,16 @@ class SlashInputKeyboard @JvmOverloads constructor(
         children.forEach { view ->
             if (view is LinearLayout) {
                 view.setBackgroundColor(color)
-                invalidateLayout()
             }
         }
+        invalidateLayout()
     }
 
     fun setDotAvailable(isAvailable: Boolean) {
+        val keyDotId = keys.find { keyId ->
+            keyId == R.id.button_dot
+        } ?: return
+        val keyDot = findViewById<MaterialButton>(keyDotId)
         keyDot.visibility = if (isAvailable) View.VISIBLE else View.INVISIBLE
         keyDot.isClickable = isAvailable
         invalidateLayout()
@@ -177,26 +138,31 @@ class SlashInputKeyboard @JvmOverloads constructor(
     }
 
     fun setClearDrawable(@DrawableRes drawableRes: Int) {
+        val keyClearId = keys.find { keyId ->
+            keyId == R.id.button_clear
+        } ?: return
+        val keyClear = findViewById<MaterialButton>(keyClearId)
         keyClear.icon = ResourcesCompat.getDrawable(resources, drawableRes, null)
+        invalidateLayout()
     }
 
     fun setClearDrawableColor(@ColorRes colorRes: Int) {
+        val keyClearId = keys.find { keyId ->
+            keyId == R.id.button_clear
+        } ?: return
+        val keyClear = findViewById<MaterialButton>(keyClearId)
         keyClear.iconTint = ResourcesCompat.getColorStateList(resources, colorRes, null)
+        invalidateLayout()
     }
 
     fun setTextFont(@FontRes fontRes: Int) {
         if (fontRes == -1) return
-        key0.typeface = ResourcesCompat.getFont(context, fontRes)
-        key1.typeface = ResourcesCompat.getFont(context, fontRes)
-        key2.typeface = ResourcesCompat.getFont(context, fontRes)
-        key3.typeface = ResourcesCompat.getFont(context, fontRes)
-        key4.typeface = ResourcesCompat.getFont(context, fontRes)
-        key5.typeface = ResourcesCompat.getFont(context, fontRes)
-        key6.typeface = ResourcesCompat.getFont(context, fontRes)
-        key7.typeface = ResourcesCompat.getFont(context, fontRes)
-        key8.typeface = ResourcesCompat.getFont(context, fontRes)
-        key9.typeface = ResourcesCompat.getFont(context, fontRes)
-        keyDot.typeface = ResourcesCompat.getFont(context, fontRes)
+        for (keyId in keys) {
+            if (keyId != R.id.button_clear) {
+                val keyButton = findViewById<MaterialButton>(keyId)
+                keyButton.typeface = ResourcesCompat.getFont(context, fontRes)
+            }
+        }
         invalidateLayout()
     }
 
@@ -213,7 +179,10 @@ class SlashInputKeyboard @JvmOverloads constructor(
                 inputConnection?.commitText("", 1) // Delete selection
         } else {
             // Some other key is pressed
-            val pressedKeyValue = keyIdToString[view.id]
+            //val pressedKeyValue = keyIdToString[view.id]
+            var pressedKeyValue = resources.getResourceEntryName(view.id).split("_")[1]
+            if (pressedKeyValue == "dot")
+                pressedKeyValue = "." // If key is called "dot", make it as "."
             inputConnection?.commitText(pressedKeyValue, 1)
         }
     }

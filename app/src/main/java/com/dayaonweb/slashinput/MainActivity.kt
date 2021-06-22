@@ -21,8 +21,6 @@ class MainActivity : AppCompatActivity() {
         keyboard = findViewById(R.id.keyboard)
 
         // prevent system keyboard from appearing when EditText is tapped
-        inputEditText.setRawInputType(InputType.TYPE_CLASS_TEXT)
-        inputEditText.setTextIsSelectable(true)
         inputEditText.showSoftInputOnFocus = false
 
         // pass the InputConnection from the EditText to the keyboard
@@ -37,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnBgColor).setOnClickListener {
             keyboard.setKeyboardBackgroundColor(getColor(R.color.black))
         }
-
 
     }
 }
