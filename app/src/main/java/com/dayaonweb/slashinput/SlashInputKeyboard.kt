@@ -8,11 +8,12 @@ import android.view.inputmethod.InputConnection
 import android.widget.LinearLayout
 import com.google.android.material.button.MaterialButton
 
-class SlashInputKeyboard(
+class SlashInputKeyboard @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
-    defStyleAttribute: Int = 0
-) : LinearLayout(context, attributeSet, defStyleAttribute), View.OnClickListener {
+    defStyle: Int = 0,
+    defStyleRes: Int = 0
+) : LinearLayout(context, attributeSet, defStyle, defStyleRes), View.OnClickListener {
 
     // The input keys (buttons)
     private lateinit var key0: MaterialButton
@@ -34,14 +35,14 @@ class SlashInputKeyboard(
 
 
     // Communication link to the input edit text
-    private lateinit var inputConnection: InputConnection
+    private var inputConnection: InputConnection? = null
 
     init {
+        LayoutInflater.from(context).inflate(R.layout.keyboard, this, true)
         initializeKeyboard(context)
     }
 
     private fun initializeKeyboard(context: Context) {
-        LayoutInflater.from(context).inflate(R.layout.keyboard, this, true)
         hookKeys()
         setupKeysListener()
         populateKeysIdToStringMap()
@@ -97,7 +98,7 @@ class SlashInputKeyboard(
     }
 
 
-    fun setInputConnection(inputConnection: InputConnection) {
+    fun setInputConnection(inputConnection: InputConnection?) {
         this.inputConnection = inputConnection
     }
 

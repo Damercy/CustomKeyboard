@@ -13,10 +13,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_1"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
@@ -29,9 +30,10 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_2"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:layout_weight="1"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
@@ -45,10 +47,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_3"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
@@ -68,10 +71,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_4"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
@@ -84,10 +88,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_5"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
@@ -100,10 +105,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_6"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
@@ -123,10 +129,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_7"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
@@ -139,10 +146,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_8"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
@@ -155,10 +163,12 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_9"
-                style="?android:attr/buttonBarButtonStyle"
+
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
@@ -178,10 +188,12 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_dot"
-                style="?android:attr/buttonBarButtonStyle"
+
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
@@ -194,10 +206,12 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_0"
-                style="?android:attr/buttonBarButtonStyle"
+
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
@@ -210,10 +224,11 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_clear"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="?attr/buttonBarButtonStyle"
+                app:rippleColor="@android:color/darker_gray"
                 android:insetLeft="0dp"
                 android:insetTop="0dp"
                 android:insetRight="0dp"
