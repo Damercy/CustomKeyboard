@@ -1,9 +1,10 @@
 package com.dayaonweb.slashinput
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.InputType
 import android.view.inputmethod.EditorInfo
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
@@ -27,5 +28,16 @@ class MainActivity : AppCompatActivity() {
         // pass the InputConnection from the EditText to the keyboard
         val inputConnection = inputEditText.onCreateInputConnection(EditorInfo())
         keyboard.setInputConnection(inputConnection)
+
+        // Setup button listeners to change color dynamically
+        findViewById<Button>(R.id.btnTextColor).setOnClickListener {
+            keyboard.setInputTextColor(getColor(R.color.design_default_color_primary))
+        }
+
+        findViewById<Button>(R.id.btnBgColor).setOnClickListener {
+            keyboard.setKeyboardBackgroundColor(getColor(R.color.black))
+        }
+
+
     }
 }

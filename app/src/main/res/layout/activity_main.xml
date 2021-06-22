@@ -28,6 +28,22 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <Button
+        android:id="@+id/btnTextColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tilParent"
+        android:layout_margin="32dp"
+        android:text="change text color" />
+
+    <Button
+        android:id="@+id/btnBgColor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnTextColor"
+        android:layout_margin="32dp"
+        android:text="change background color" />
+
     <com.dayaonweb.slashinput.SlashInputKeyboard
         android:id="@+id/keyboard"
         android:layout_width="match_parent"

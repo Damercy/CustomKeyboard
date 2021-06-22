@@ -7,6 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputConnection
 import android.widget.LinearLayout
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.DrawableRes
+import androidx.annotation.FontRes
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.children
 import com.google.android.material.button.MaterialButton
 
 class SlashInputKeyboard @JvmOverloads constructor(
@@ -38,17 +44,52 @@ class SlashInputKeyboard @JvmOverloads constructor(
     // Communication link to the input edit text
     private var inputConnection: InputConnection? = null
 
+    // Customizable parameters
+    private var textColor: Int
+    private var keyboardBackgroundColor: Int
+    private var isDotKeyVisible: Boolean
+    private var textFont: Int
+    private var clearDrawable: Int
+    private var clearDrawableColor: Int
+
     init {
-        LayoutInflater.from(context)
-            .inflate(R.layout.keyboard, this, true) // Might need to call for each resource change
-        rootView.setBackgroundColor(resources.getColor(R.color.white, null))
-        initializeKeyboard(context)
+        context.theme.obtainStyledAttributes(
+            attributeSet,
+            R.styleable.SlashInputKeyboard,
+            defStyle,
+            defStyleRes
+        ).apply {
+            textColor = getColor(
+                R.styleable.SlashInputKeyboard_textColor,
+                resources.getColor(R.color.slash_green, null)
+            )
+            keyboardBackgroundColor = getColor(
+                R.styleable.SlashInputKeyboard_backgroundColor,
+                resources.getColor(R.color.white, null)
+            )
+            clearDrawable = getResourceId(
+                R.styleable.SlashInputKeyboard_clearDrawable,
+                R.drawable.outline_backspace_black_24dp
+            )
+            clearDrawableColor = getResourceId(
+                R.styleable.SlashInputKeyboard_clearDrawableColor,
+                R.color.slash_green
+            )
+            textFont = getResourceId(R.styleable.SlashInputKeyboard_textFont, -1)
+            isDotKeyVisible = getBoolean(R.styleable.SlashInputKeyboard_isDotVisible, true)
+        }
+        LayoutInflater.from(context).inflate(R.layout.keyboard, this, true)
+        initializeKeyboard()
     }
 
-    private fun initializeKeyboard(context: Context) {
+    private fun initializeKeyboard() {
         hookKeys()
         setupKeysListener()
         populateKeysIdToStringMap()
+        setInputTextColor(textColor)
+        setKeyboardBackgroundColor(keyboardBackgroundColor)
+        setDotAvailable(isDotKeyVisible)
+        setTextFont(textFont)
     }
 
     private fun populateKeysIdToStringMap() {
@@ -95,9 +136,39 @@ class SlashInputKeyboard @JvmOverloads constructor(
         keyDot = findViewById(R.id.button_dot)
     }
 
-    fun isDotAvailable(isAvailable: Boolean = true) {
+    private fun invalidateLayout() {
+        invalidate()
+        requestLayout()
+    }
+
+    fun setInputTextColor(@ColorInt color: Int) {
+        key0.setTextColor(color)
+        key1.setTextColor(color)
+        key2.setTextColor(color)
+        key3.setTextColor(color)
+        key4.setTextColor(color)
+        key5.setTextColor(color)
+        key6.setTextColor(color)
+        key7.setTextColor(color)
+        key8.setTextColor(color)
+        key9.setTextColor(color)
+        keyDot.setTextColor(color)
+        invalidateLayout()
+    }
+
+    fun setKeyboardBackgroundColor(@ColorInt color: Int) {
+        children.forEach { view ->
+            if (view is LinearLayout) {
+                view.setBackgroundColor(color)
+                invalidateLayout()
+            }
+        }
+    }
+
+    fun setDotAvailable(isAvailable: Boolean) {
         keyDot.visibility = if (isAvailable) View.VISIBLE else View.INVISIBLE
         keyDot.isClickable = isAvailable
+        invalidateLayout()
     }
 
 
@@ -105,6 +176,29 @@ class SlashInputKeyboard @JvmOverloads constructor(
         this.inputConnection = inputConnection
     }
 
+    fun setClearDrawable(@DrawableRes drawableRes: Int) {
+        keyClear.icon = ResourcesCompat.getDrawable(resources, drawableRes, null)
+    }
+
+    fun setClearDrawableColor(@ColorRes colorRes: Int) {
+        keyClear.iconTint = ResourcesCompat.getColorStateList(resources, colorRes, null)
+    }
+
+    fun setTextFont(@FontRes fontRes: Int) {
+        if (fontRes == -1) return
+        key0.typeface = ResourcesCompat.getFont(context, fontRes)
+        key1.typeface = ResourcesCompat.getFont(context, fontRes)
+        key2.typeface = ResourcesCompat.getFont(context, fontRes)
+        key3.typeface = ResourcesCompat.getFont(context, fontRes)
+        key4.typeface = ResourcesCompat.getFont(context, fontRes)
+        key5.typeface = ResourcesCompat.getFont(context, fontRes)
+        key6.typeface = ResourcesCompat.getFont(context, fontRes)
+        key7.typeface = ResourcesCompat.getFont(context, fontRes)
+        key8.typeface = ResourcesCompat.getFont(context, fontRes)
+        key9.typeface = ResourcesCompat.getFont(context, fontRes)
+        keyDot.typeface = ResourcesCompat.getFont(context, fontRes)
+        invalidateLayout()
+    }
 
     // Called for a click to entire keyboard
     override fun onClick(view: View?) {
