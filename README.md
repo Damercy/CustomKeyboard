@@ -1,4 +1,7 @@
-# SlashKeyboard
+<img src="screenshots/SlashPay.gif"/>   
+
+# SlashKeyboard  
+
 Custom input keyboard that you can customize!
 
 <p float="left">
