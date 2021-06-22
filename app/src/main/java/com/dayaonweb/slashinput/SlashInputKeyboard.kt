@@ -1,6 +1,7 @@
 package com.dayaonweb.slashinput
 
 import android.content.Context
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -38,7 +39,9 @@ class SlashInputKeyboard @JvmOverloads constructor(
     private var inputConnection: InputConnection? = null
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.keyboard, this, true)
+        LayoutInflater.from(context)
+            .inflate(R.layout.keyboard, this, true) // Might need to call for each resource change
+        rootView.setBackgroundColor(resources.getColor(R.color.white, null))
         initializeKeyboard(context)
     }
 
@@ -104,8 +107,25 @@ class SlashInputKeyboard @JvmOverloads constructor(
 
 
     // Called for a click to entire keyboard
-    override fun onClick(v: View?) {
+    override fun onClick(view: View?) {
+        if (inputConnection == null || view == null) return
 
+        // If delete is pressed, handle accordingly
+        if (view.id == R.id.button_clear) {
+            val selectedText = inputConnection?.getSelectedText(0)
+            if (TextUtils.isEmpty(selectedText))
+                inputConnection?.deleteSurroundingText(1, 0) // Delete previous character
+            else
+                inputConnection?.commitText("", 1) // Delete selection
+        } else {
+            // Some other key is pressed
+            val pressedKeyValue = keyIdToString[view.id]
+            inputConnection?.commitText(pressedKeyValue, 1)
+        }
+    }
+
+    companion object {
+        private const val TAG = "SlashInputKeyboard"
     }
 
 }
