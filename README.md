@@ -1,10 +1,17 @@
 ![Banner](./screenshots/cover.png)
 # Custom Keyboard
-Small, friendly, minimal keyboard for your everyday use.
+Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use & bloat free!
 
-<p float="left">
-  <video src="screenshots/demo.mp4" height="400" width="200"/>
-  <img src="screenshots/ss.png" height="400" width="200" />
+# Features
+- Haptic feedback on touch
+- Animating keys (scale animation currently)
+- Clear (Delete) key support
+- Dot (Decimal) key support
+- Change keyboard parameters like key color, keyboard color, key font etc.
+
+# Screenshot
+<p float="centre">
+  <img src="screenshots/ss.png" height="600" width="300" />
 </p>
 
 # Usage
