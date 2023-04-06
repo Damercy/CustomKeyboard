@@ -1,8 +1,8 @@
 ![Banner](./screenshots/cover.png)
 # Custom Keyboard
-Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use & bloat free!
+Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use & bloat free!  
 
-<img src="./screenshots/demo.gif"/>
+<img src="./screenshots/demo.gif" height="600"/>
 
 # Features
 - Haptic feedback on touch
@@ -13,9 +13,9 @@ Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use &
 
 # Screenshot
 <p>
-<img src="screenshots/ss.png" height="600" width="300" />
-<img src="screenshots/ss_pressed.png" height="600" width="300" />
-<img src="screenshots/ss_pressed_cc.png" height="600" width="300" />
+<img src="screenshots/ss.png" height="400" width="200" />
+<img src="screenshots/ss_pressed.png" height="400" width="200" />
+<img src="screenshots/ss_pressed_cc.png" height="400" width="200" />
 </p>
 
 
@@ -77,9 +77,10 @@ class MainActivity : AppCompatActivity() {
 - `isDotVisible` - Toggle dot (decimal) key visibility
 - `clearDrawable` - Change clear (delete) icon
 - `clearDrawableColor` - Change clear (delete) icon color
+- `hapticsEnabled` -Toggle if haptic feedback should be enabled or not
+- `animationEnabled` - Toggle if key press animation should be enabled or not
 
 ## In code
-
 - `setClearDrawableColor(colorRes:Int)`
 - `setClearDrawable(drawableRes:Int)`
 - `setTextFont(fontRes:Int)`
@@ -87,5 +88,7 @@ class MainActivity : AppCompatActivity() {
 - `setKeyboardBackgroundColor(color:Int)`
 - `setInputTextColor(colorRes:Int)`
 - `setClearAvailable(isAvailable:Boolean)`
+- `setHaptic(isEnabled: Boolean)`
+- `setAnimationEnabled(isEnabled: Boolean)`
 
 ### Give it a ⭐ if you liked it 😄
