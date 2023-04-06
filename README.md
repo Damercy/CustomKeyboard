@@ -1,5 +1,8 @@
 ![Banner](./screenshots/cover.png)
-# Custom Keyboard
+# Custom Keyboard [![](https://jitpack.io/v/Damercy/CustomKeyboard.svg)](https://jitpack.io/#Damercy/CustomKeyboard)
+![Kotlin](https://img.shields.io/badge/kotlin-%237F52FF.svg?style=for-the-badge&logo=kotlin&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)  
+
 Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use & bloat free!  
 
 <img src="./screenshots/demo.gif" height="600"/>
@@ -11,7 +14,7 @@ Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use &
 - Dot (Decimal) key support
 - Change keyboard parameters like key color, keyboard color, key font etc.
 
-# Screenshot
+# Screenshots
 <p>
 <img src="screenshots/ss.png" height="400" width="200" />
 <img src="screenshots/ss_pressed.png" height="400" width="200" />
