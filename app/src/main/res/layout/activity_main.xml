@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/rubik_bold"
         android:padding="16dp"
+        android:textColor="@color/purple_700"
         android:text="Custom keyboard"
         android:textAlignment="center"
         android:textSize="32sp" />
@@ -38,7 +39,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <dev.dayaonweb.openime.Keyboard
+        app:backgroundColor="@color/purple_700"
+        app:textColor="@color/white"
         android:id="@+id/keyboard"
+        app:isDotVisible="false"
+        app:isClearVisible="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />

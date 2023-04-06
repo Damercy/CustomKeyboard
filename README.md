@@ -14,7 +14,9 @@ Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use &
 # Screenshot
 <p>
 <img src="screenshots/ss.png" height="600" width="300" />
-<img src="screenshots/ss_pressed.png" height="600" width="300" /></p>
+<img src="screenshots/ss_pressed.png" height="600" width="300" />
+<img src="screenshots/ss_pressed_cc.png" height="600" width="300" />
+</p>
 
 
 # Usage
