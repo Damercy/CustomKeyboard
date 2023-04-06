@@ -34,7 +34,7 @@ Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use &
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <dev.dayaonweb.openime.Keyboard
+    <dev.dayaonweb.openime.customkeyboard.Keyboard
         android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
