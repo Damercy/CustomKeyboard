@@ -1,6 +1,7 @@
 ![Banner](./screenshots/cover.png)
 # Custom Keyboard
 Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use & bloat free!
+<video src="https://user-images.githubusercontent.com/24220261/230501471-98349633-a2eb-4540-a7f6-3602ad274801.mp4"/>
 
 # Features
 - Haptic feedback on touch
@@ -10,9 +11,7 @@ Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use &
 - Change keyboard parameters like key color, keyboard color, key font etc.
 
 # Screenshot
-<p float="centre">
-  <img src="screenshots/ss.png" height="600" width="300" />
-</p>
+<img src="screenshots/ss.png" height="600" width="300" />
 
 # Usage
 
