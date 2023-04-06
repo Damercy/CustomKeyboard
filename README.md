@@ -1,33 +1,40 @@
-<img src="screenshots/SlashPay.gif"/>   
+![Banner](./screenshots/cover.png)
+# Custom Keyboard
+Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use & bloat free!  
 
-# SlashKeyboard  
+<img src="./screenshots/demo.gif" height="600"/>
 
-Custom input keyboard that you can customize!
+# Features
+- Haptic feedback on touch
+- Animating keys (scale animation currently)
+- Clear (Delete) key support
+- Dot (Decimal) key support
+- Change keyboard parameters like key color, keyboard color, key font etc.
 
-<p float="left">
-  <img src="screenshots/ss_1.png" height="400" width="200" />
-  <img src="screenshots/ss_2.png" height="400" width="200" />
+# Screenshot
+<p>
+<img src="screenshots/ss.png" height="400" width="200" />
+<img src="screenshots/ss_pressed.png" height="400" width="200" />
+<img src="screenshots/ss_pressed_cc.png" height="400" width="200" />
 </p>
 
-### Usage 
-First setup in your layout SlashKeyboard as follows:
+
+# Usage
+
+- Add layout in resource file:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
 
-      /* Other layout files*/
-  
-    <EditText
-        android:id="@+id/etInput"
+    /* Other layout files*/
+
+    <EditText android:id="@+id/etInput" 
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    
-    <com.dayaonweb.slashinput.SlashInputKeyboard
+        android:layout_height="wrap_content" />
+
+    <dev.dayaonweb.openime.customkeyboard.Keyboard
         android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,13 +42,12 @@ First setup in your layout SlashKeyboard as follows:
 
 </RelativeLayout>
 ```
-
-Then setup SlashKeyboard & pass in input connection from corresponding edit text as shown below:
+- Setup the custom keyboard by passing the input connection of the corresponding edit text:
 ```kotlin
 class MainActivity : AppCompatActivity() {
 
     private lateinit var inputEditText: EditText
-    private lateinit var keyboard: SlashInputKeyboard
+    private lateinit var keyboard: Keyboard
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,8 +68,8 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-### Customizing
-> XML
+# Customizing
+## XML
 - `textColor` - Change color of the keys in the keyboard
 - `backgroundColor` - Change background color of the keyboard
 - `textFont` - Change font family of the keys in the keyboard
@@ -71,9 +77,10 @@ class MainActivity : AppCompatActivity() {
 - `isDotVisible` - Toggle dot (decimal) key visibility
 - `clearDrawable` - Change clear (delete) icon
 - `clearDrawableColor` - Change clear (delete) icon color
+- `hapticsEnabled` -Toggle if haptic feedback should be enabled or not
+- `animationEnabled` - Toggle if key press animation should be enabled or not
 
-> Java (in code)  
-
+## In code
 - `setClearDrawableColor(colorRes:Int)`
 - `setClearDrawable(drawableRes:Int)`
 - `setTextFont(fontRes:Int)`
@@ -81,6 +88,7 @@ class MainActivity : AppCompatActivity() {
 - `setKeyboardBackgroundColor(color:Int)`
 - `setInputTextColor(colorRes:Int)`
 - `setClearAvailable(isAvailable:Boolean)`
-
+- `setHaptic(isEnabled: Boolean)`
+- `setAnimationEnabled(isEnabled: Boolean)`
 
 ### Give it a ⭐ if you liked it 😄

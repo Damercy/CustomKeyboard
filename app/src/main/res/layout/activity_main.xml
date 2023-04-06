@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="dev.dayaonweb.openime.MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTitle"
@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/rubik_bold"
         android:padding="16dp"
-        android:text="SlashPay keyboard"
+        android:textColor="@color/purple_700"
+        android:text="Custom keyboard"
         android:textAlignment="center"
-        android:textColor="@color/slash_green"
         android:textSize="32sp" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -28,23 +28,21 @@
         app:boxCornerRadiusBottomEnd="16dp"
         app:boxCornerRadiusBottomStart="16dp"
         app:boxCornerRadiusTopEnd="16dp"
-        app:boxCornerRadiusTopStart="16dp"
-        app:boxStrokeColor="@color/slash_green">
+        app:boxCornerRadiusTopStart="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/slash_green"
-            android:textColorHighlight="@color/slash_green"
             android:textCursorDrawable="@null" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.dayaonweb.slashinput.SlashInputKeyboard
+    <dev.dayaonweb.openime.customkeyboard.Keyboard
         android:id="@+id/keyboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
+
 
 </RelativeLayout>

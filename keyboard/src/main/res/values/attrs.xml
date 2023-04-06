@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomKeyboard">
+        <attr name="textColor" format="color" />
+        <attr name="backgroundColor" format="color" />
+        <attr name="isDotVisible" format="boolean" />
+        <attr name="isClearVisible" format="boolean" />
+        <attr name="textFont" format="reference" />
+        <attr name="clearDrawable" format="reference" />
+        <attr name="clearDrawableColor" format="reference" />
+        <attr name="hapticsEnabled" format="boolean" />
+        <attr name="animationEnabled" format="boolean" />
+    </declare-styleable>
+</resources>
