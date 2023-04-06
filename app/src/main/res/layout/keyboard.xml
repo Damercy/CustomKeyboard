@@ -13,36 +13,33 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_1"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="1"
-                android:textSize="24sp"
-                app:rippleColor="@android:color/darker_gray" />
+                android:textSize="24sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_2"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="2"
-                android:textSize="24sp"
-                app:rippleColor="@android:color/darker_gray" />
+                android:textSize="24sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_3"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="3"
-                android:textSize="24sp"
-                app:rippleColor="@android:color/darker_gray" />
+                android:textSize="24sp" />
 
         </LinearLayout>
 
@@ -53,36 +50,33 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_4"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="4"
-                android:textSize="24sp"
-                app:rippleColor="@android:color/darker_gray" />
+                android:textSize="24sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_5"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="5"
-                android:textSize="24sp"
-                app:rippleColor="@android:color/darker_gray" />
+                android:textSize="24sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_6"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="6"
-                android:textSize="24sp"
-                app:rippleColor="@android:color/darker_gray" />
+                android:textSize="24sp" />
 
         </LinearLayout>
 
@@ -93,36 +87,33 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_7"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="7"
-                android:textSize="24sp"
-                app:rippleColor="@android:color/darker_gray" />
+                android:textSize="24sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_8"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="8"
-                android:textSize="24sp"
-                app:rippleColor="@android:color/darker_gray" />
+                android:textSize="24sp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_9"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="9"
-                android:textSize="24sp"
-                app:rippleColor="@android:color/darker_gray" />
+                android:textSize="24sp" />
 
         </LinearLayout>
 
@@ -133,39 +124,36 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_dot"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="."
                 android:textSize="24sp"
-                app:iconGravity="textStart"
-                app:rippleColor="@android:color/darker_gray" />
+                app:iconGravity="textStart" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_0"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:text="0"
                 android:textSize="24sp"
-                app:iconGravity="textStart"
-                app:rippleColor="@android:color/darker_gray" />
+                app:iconGravity="textStart" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_clear"
-                style="?attr/buttonBarButtonStyle"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="16dp"
                 android:textSize="24sp"
                 app:iconGravity="textStart"
-                app:iconSize="24dp"
-                app:rippleColor="@android:color/darker_gray" />
+                app:iconSize="24dp" />
 
         </LinearLayout>
     </LinearLayout>

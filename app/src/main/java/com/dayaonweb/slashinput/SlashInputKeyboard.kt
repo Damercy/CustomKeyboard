@@ -1,16 +1,27 @@
 package com.dayaonweb.slashinput
 
+import android.animation.TimeInterpolator
 import android.content.Context
+import android.graphics.Color
 import android.text.TextUtils
 import android.util.AttributeSet
+import android.util.Log
+import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.MotionEvent.ACTION_DOWN
+import android.view.MotionEvent.ACTION_POINTER_DOWN
+import android.view.MotionEvent.ACTION_POINTER_UP
+import android.view.MotionEvent.ACTION_UP
 import android.view.View
+import android.view.animation.BounceInterpolator
 import android.view.inputmethod.InputConnection
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.children
 import com.google.android.material.button.MaterialButton
@@ -20,7 +31,8 @@ class SlashInputKeyboard @JvmOverloads constructor(
     attributeSet: AttributeSet? = null,
     defStyle: Int = 0,
     defStyleRes: Int = 0
-) : LinearLayout(context, attributeSet, defStyle, defStyleRes), View.OnClickListener {
+) : LinearLayout(context, attributeSet, defStyle, defStyleRes), View.OnClickListener,
+    View.OnTouchListener{
 
     // The input keys (buttons)
     private var keys: List<Int> = listOf(
@@ -45,11 +57,15 @@ class SlashInputKeyboard @JvmOverloads constructor(
     // Customizable parameters
     private var textColor: Int
     private var keyboardBackgroundColor: Int
+    private var keyRippleColor: Int
     private var isDotKeyVisible: Boolean
     private var isClearKeyVisible: Boolean
     private var textFont: Int
     private var clearDrawable: Int
     private var clearDrawableColor: Int
+    private var isHapticsEnabled: Boolean
+    private var isAnimationEnabled: Boolean
+    private var isRippleEnabled: Boolean
 
     init {
         context.theme.obtainStyledAttributes(
@@ -60,11 +76,15 @@ class SlashInputKeyboard @JvmOverloads constructor(
         ).apply {
             textColor = getColor(
                 R.styleable.SlashInputKeyboard_textColor,
-                resources.getColor(R.color.slash_green, null)
+                ContextCompat.getColor(context, R.color.black)
+            )
+            keyRippleColor = getResourceId(
+                R.styleable.SlashInputKeyboard_keyRippleColor,
+                R.color.grey
             )
             keyboardBackgroundColor = getColor(
                 R.styleable.SlashInputKeyboard_backgroundColor,
-                resources.getColor(R.color.white, null)
+                ContextCompat.getColor(context, android.R.color.transparent)
             )
             clearDrawable = getResourceId(
                 R.styleable.SlashInputKeyboard_clearDrawable,
@@ -72,11 +92,14 @@ class SlashInputKeyboard @JvmOverloads constructor(
             )
             clearDrawableColor = getResourceId(
                 R.styleable.SlashInputKeyboard_clearDrawableColor,
-                R.color.slash_green
+                R.color.black
             )
             textFont = getResourceId(R.styleable.SlashInputKeyboard_textFont, -1)
             isDotKeyVisible = getBoolean(R.styleable.SlashInputKeyboard_isDotVisible, true)
             isClearKeyVisible = getBoolean(R.styleable.SlashInputKeyboard_isClearVisible, true)
+            isHapticsEnabled = getBoolean(R.styleable.SlashInputKeyboard_hapticsEnabled, true)
+            isRippleEnabled = getBoolean(R.styleable.SlashInputKeyboard_rippleEnabled, false)
+            isAnimationEnabled = getBoolean(R.styleable.SlashInputKeyboard_animationEnabled, true)
         }
         LayoutInflater.from(context).inflate(R.layout.keyboard, this, true)
         initializeKeyboard()
@@ -85,12 +108,16 @@ class SlashInputKeyboard @JvmOverloads constructor(
     private fun initializeKeyboard() {
         setupKeysListener()
         setInputTextColor(textColor)
+        setKeyRippleColor(keyRippleColor)
         setKeyboardBackgroundColor(keyboardBackgroundColor)
         setDotAvailable(isDotKeyVisible)
         setClearAvailable(isClearKeyVisible)
         setTextFont(textFont)
         setClearDrawable(clearDrawable)
         setClearDrawableColor(clearDrawableColor)
+        setHaptic(isHapticsEnabled)
+        setRippleEnabled(isRippleEnabled)
+        setAnimationEnabled(isAnimationEnabled)
     }
 
 
@@ -98,6 +125,13 @@ class SlashInputKeyboard @JvmOverloads constructor(
         keys.forEach { keyId ->
             val keyButton = findViewById<MaterialButton>(keyId)
             keyButton.setOnClickListener(this)
+        }
+    }
+
+    private fun setupAnimationOnKeyListener() {
+        keys.forEach { keyId ->
+            val keyButton = findViewById<MaterialButton>(keyId)
+            keyButton.setOnTouchListener(this)
         }
     }
 
@@ -112,6 +146,39 @@ class SlashInputKeyboard @JvmOverloads constructor(
                 val keyButton = findViewById<MaterialButton>(keyId)
                 keyButton.setTextColor(color)
             }
+        }
+        invalidateLayout()
+    }
+
+    fun setKeyRippleColor(@ColorRes keyRippleColor: Int) {
+        for (keyId in keys) {
+            findViewById<MaterialButton>(keyId).rippleColor =
+                ContextCompat.getColorStateList(context, keyRippleColor)
+        }
+        invalidateLayout()
+    }
+
+
+    fun setHaptic(isEnabled: Boolean) {
+        isHapticsEnabled = isEnabled
+    }
+
+    fun setAnimationEnabled(isEnabled: Boolean) {
+        isAnimationEnabled = isEnabled
+        if (isAnimationEnabled)
+            setupAnimationOnKeyListener()
+    }
+
+    fun setRippleEnabled(isEnabled: Boolean) {
+        isRippleEnabled = isEnabled
+        toggleRippleEffectOnKeys(isRippleEnabled)
+    }
+
+
+    private fun toggleRippleEffectOnKeys(enable: Boolean) {
+        for (keyId in keys) {
+            findViewById<MaterialButton>(keyId).background = if (enable) null
+            else ContextCompat.getDrawable(context, android.R.color.transparent)
         }
         invalidateLayout()
     }
@@ -179,9 +246,15 @@ class SlashInputKeyboard @JvmOverloads constructor(
         invalidateLayout()
     }
 
-    // Called for a click to entire keyboard
+    // Called for a click to a specific key of the IME
     override fun onClick(view: View?) {
         if (inputConnection == null || view == null) return
+
+        // Provide haptic feedback if enabled
+        view.apply {
+            isHapticFeedbackEnabled = isHapticsEnabled
+            performHapticFeedback(HapticFeedbackConstants.KEYBOARD_TAP)
+        }
 
         // If delete is pressed, handle accordingly
         if (view.id == R.id.button_clear) {
@@ -192,7 +265,6 @@ class SlashInputKeyboard @JvmOverloads constructor(
                 inputConnection?.commitText("", 1) // Delete selection
         } else {
             // Some other key is pressed
-            //val pressedKeyValue = keyIdToString[view.id]
             var pressedKeyValue = resources.getResourceEntryName(view.id).split("_")[1]
             if (pressedKeyValue == "dot")
                 pressedKeyValue = "." // If key is called "dot", make it as "."
@@ -200,8 +272,22 @@ class SlashInputKeyboard @JvmOverloads constructor(
         }
     }
 
-    companion object {
-        private const val TAG = "SlashInputKeyboard"
+    // Handle key animation on touch event
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        if (event?.action == ACTION_DOWN) {
+            v?.animate()
+                ?.scaleX(0.5f)
+                ?.scaleY(0.5f)
+                ?.setInterpolator(BounceInterpolator())
+                ?.start()
+        } else if (event?.action == ACTION_UP) {
+            v?.animate()
+                ?.scaleX(1.0f)
+                ?.scaleY(1.0f)
+                ?.setInterpolator(BounceInterpolator())
+                ?.start()
+        }
+        return false
     }
 
 }
