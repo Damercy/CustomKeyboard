@@ -1,4 +1,4 @@
-package com.dayaonweb.slashinput
+package dev.dayaonweb.openime
 
 import org.junit.Test
 

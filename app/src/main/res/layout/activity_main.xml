@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="dev.dayaonweb.openime.MainActivity">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTitle"
@@ -37,9 +37,8 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.dayaonweb.slashinput.SlashInputKeyboard
+    <dev.dayaonweb.openime.Keyboard
         android:id="@+id/keyboard"
-        app:rippleEnabled="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />

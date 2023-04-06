@@ -1,16 +1,14 @@
-package com.dayaonweb.slashinput
+package dev.dayaonweb.openime
 
 import android.os.Bundle
-import android.text.InputType
 import android.view.inputmethod.EditorInfo
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var inputEditText: TextInputEditText
-    private lateinit var keyboard: SlashInputKeyboard
+    private lateinit var keyboard: Keyboard
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
