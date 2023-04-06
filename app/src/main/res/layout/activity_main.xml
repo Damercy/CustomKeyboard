@@ -38,14 +38,11 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <dev.dayaonweb.openime.Keyboard
-        app:backgroundColor="@color/purple_700"
-        app:textColor="@color/white"
+    <dev.dayaonweb.openime.customkeyboard.Keyboard
         android:id="@+id/keyboard"
-        app:isDotVisible="false"
-        app:isClearVisible="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
+
 
 </RelativeLayout>

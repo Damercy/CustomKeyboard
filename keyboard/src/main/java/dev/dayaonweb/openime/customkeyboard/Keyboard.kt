@@ -1,4 +1,4 @@
-package dev.dayaonweb.openime
+package dev.dayaonweb.openime.customkeyboard
 
 import android.content.Context
 import android.text.TextUtils
@@ -69,7 +69,7 @@ class Keyboard @JvmOverloads constructor(
         ).apply {
             textColor = getColor(
                 R.styleable.CustomKeyboard_textColor,
-                ContextCompat.getColor(context, R.color.black)
+                ContextCompat.getColor(context,android.R.color.black)
             )
 
             keyboardBackgroundColor = getColor(
@@ -82,7 +82,7 @@ class Keyboard @JvmOverloads constructor(
             )
             clearDrawableColor = getResourceId(
                 R.styleable.CustomKeyboard_clearDrawableColor,
-                R.color.black
+                android.R.color.black
             )
             textFont = getResourceId(R.styleable.CustomKeyboard_textFont, -1)
             isDotKeyVisible = getBoolean(R.styleable.CustomKeyboard_isDotVisible, true)

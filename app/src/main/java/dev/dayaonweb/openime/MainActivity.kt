@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import dev.dayaonweb.openime.customkeyboard.Keyboard
 
 class MainActivity : AppCompatActivity() {
 
