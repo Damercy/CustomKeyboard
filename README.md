@@ -20,7 +20,21 @@ Add a keyboard experience to your app just like PhonePe, GPay etc. Easy to use &
 
 
 # Usage
-
+- Add repository dependency in root `build.gradle`:
+```
+allprojects {
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
+	}
+}
+```
+- Add library dependency in app `build.gradle`:
+```
+dependencies {
+    implementation 'com.github.Damercy:CustomKeyboard:2.0.0'
+}
+```
 - Add layout in resource file:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
